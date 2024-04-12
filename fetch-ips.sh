@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-FILE=/home/macario/gh-actions-proj/configuring-servers/hosts
+FILE=/home/macario/terraform-ansible-project/configuring-servers/hosts
 
 
 if [ -f "$FILE" ]; then
