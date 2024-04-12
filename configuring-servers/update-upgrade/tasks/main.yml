@@ -1,0 +1,9 @@
+---
+- name: update packages
+  ansible.builtin.apt:
+    name: '*'
+    state: latest
+
+- name: upgrade packages
+  ansible.builtin.apt:
+    upgrade: dist

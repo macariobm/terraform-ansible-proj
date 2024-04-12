@@ -1,0 +1,25 @@
+---
+- name: create and add user to group
+  ansible.builtin.user:
+    user: "{{ user }}"
+    create_home: true
+    append: true
+    state: present
+    system: true
+    groups: docker
+
+#add absolute path to public key in control node
+- name: add SSH key to new user
+  ansible.posix.authorized_key:
+    user: "{{ user }}"
+    state: present
+    key: "{{ lookup('file', 'ABSOLUTE_PATH_TO_PUB_KEY') }}" 
+
+- name: restart SSH to apply changes
+  ansible.builtin.service:
+    name: ssh
+    state: restarted
+
+- name: clean after installation
+  ansible.builtin.apt:
+    clean: yes

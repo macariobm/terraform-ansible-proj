@@ -1,0 +1,14 @@
+- hosts: servers
+  become: true
+  gather_facts: false
+  remote_user: 'ubuntu'
+  vars:
+    ansible_ssh_private_key_file: #PATH TO PRIVATE KEY IN CONTORL NODE
+    ansible_ssh_public_key_file: #PATH TO PUBLIC KEY IN CONTROL NODE
+  roles:
+  - update-upgrade
+  - install-pkgs
+  - config-docker
+  - config-user
+  - build-image
+  - run-containers

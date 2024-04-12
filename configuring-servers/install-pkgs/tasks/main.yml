@@ -1,0 +1,11 @@
+---
+  - name: install packages
+    ansible.builtin.apt:
+     name:
+       - ca-certificates
+       - curl 
+       - gnupg
+       - software-properties-common
+       - apt-transport-https
+       - python3
+       - python3-requests

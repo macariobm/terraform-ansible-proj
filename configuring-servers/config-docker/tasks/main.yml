@@ -1,0 +1,35 @@
+---
+- name: create dir for docker's gpg key
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '755'
+
+- name: add docker's gpg key 
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    keyring: /etc/apt/keyrings/docker.gpg
+    state: present
+
+- name: add docker repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable"
+    filename: docker
+
+- name: install docker pkgs
+  become: true
+  ansible.builtin.apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    state: present
+    update_cache: true
+
+- name: add group
+  ansible.builtin.group:
+    name: docker
+    state: "present"

@@ -1,0 +1,11 @@
+---
+- name: create and run new containers
+  block:
+  - name: create and run
+    community.docker.docker_container:
+      image: "{{ image_info.images[0].Id }}"
+      name: "container-{{ item }}"
+      interactive: true
+      tty: true
+      state: started
+    with_sequence: count=4

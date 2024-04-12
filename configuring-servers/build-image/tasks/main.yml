@@ -1,0 +1,23 @@
+---
+- name: copy, build and gather info of Dockerfile
+  block:
+  - name: copy Dockerfile to remote nodes
+    ansible.builtin.copy:
+      src: #path to Dockerfile in control node
+      dest: "/home/appdev/"
+      mode: '644'
+
+  - name: build docker image
+    community.docker.docker_image_build:
+      name: "{{ docker_image_name }}"
+      path: /home/appdev/
+      dockerfile: /home/appdev/Dockerfile
+
+  - name: gather docker image's info
+    community.docker.docker_image_info:
+      name: "{{ docker_image_name }}"
+    register: image_info
+
+  - name: check if id output is functioning
+    ansible.builtin.debug:
+      msg: "Image's id is: {{ image_info.images[0].Id }}"
