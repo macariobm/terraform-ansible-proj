@@ -53,3 +53,7 @@ São necessárias credencias da AWS. Elas podem ser exportadas como variáveis d
 ### Licensa
 
 GNU GPLv3
+
+
+
+# English (under construction)
