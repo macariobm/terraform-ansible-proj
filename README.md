@@ -24,7 +24,7 @@ O playbook do Ansible:
 
 Na máquina de controle é necessário o Terraform, Python e Ansible.
 
-Para o Ansible, precisaremos de collectiosn que não fazem parte do *Ansible core*. 
+Para o Ansible, precisaremos de collections que não fazem parte do *Ansible core*. 
 
 Usaremos:
 
